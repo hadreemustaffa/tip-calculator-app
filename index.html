@@ -1,44 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Tip Calculator App solution for Frontendmentor.io">
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  
+  <link rel="stylesheet" href="style.css">
   <title>Frontend Mentor | Tip calculator app</title>
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
 </head>
-<body>
 
-  Bill
+<body class="text-neutral-2 bg-neutral-4">
+  <main>
+    <div class="logo">
+      <img src="images/logo.svg" alt="">
+    </div>
+    <div class="calculator bg-neutral-6">
+      <div class="input">
+        <form action="#">
+          <label class="fs-tertiary-body" for="billAmount">Bill</label>
+          <div class="flex-container bg-neutral-5">
+            <img class="icon" src="./images/icon-dollar.svg" alt="">
+            <input type="text" id="billAmount" placeholder="0"
+              oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required />
+          </div>
+        </form>
 
-  Select Tip %
-  5%
-  10%
-  15%
-  25%
-  50%
-  Custom
+        <form action="#">
+          <fieldset>
+            <legend class="fs-tertiary-body">Select Tip %</legend>
+            <div class="tip-input-container ">
+              <input class="text-neutral-6 bg-neutral-1 btn" type="button" value="5%">
+              <input class="text-neutral-6 bg-neutral-1 btn" type="button" value="10%">
+              <input class="text-neutral-6 bg-neutral-1 btn" type="button" value="15%">
+              <input class="text-neutral-6 bg-neutral-1 btn" type="button" value="25%">
+              <input class="text-neutral-6 bg-neutral-1 btn" type="button" value="50%">
+              <input class="text-neutral-2 bg-neutral-5 btn" type="text" placeholder="Custom" size="6" maxlength="3">
+            </div>
+          </fieldset>
+        </form>
 
-  Number of People
+        <form action="#" class="people-container">
+          <label class="fs-tertiary-body" for="numberOfPeople">Number of People</label>
+          <div class="flex-container">
+            <img class="icon" src="./images/icon-person.svg" alt="">
+            <input type="text" id="numberOfPeople" placeholder="0"
+              oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required />
+          </div>
+        </form>
+      </div>
 
-  Tip Amount
-  / person
+      <div class="output bg-neutral-1">
+        <div class="amount-container">
+          <div class="amount-text">
+            <p><span class="text-neutral-6 fs-tertiary-body">Tip Amount</span><br>/ person</p>
+          </div>
+          <!-- tip-per-person-output -->
+          <div class="amount-per-person">
+            <h1 class="text-primary-1">$00.00</h1>
+          </div>
+        </div>
+        <div class="amount-container">
+          <div class="amount-text">
+            <p><span class="text-neutral-6 fs-tertiary-body">Total</span><br>/ person</p>
+          </div>
+          <!-- total-tip-output -->
+          <div class="total-per-person">
+            <h1 class="text-primary-1">$00.00</h1>
+          </div>
+        </div>
+        <button class="text-neutral-1 bg-primary-1 fs-primary-body reset btn" type="reset">RESET</button>
+      </div>
+    </div>
+  </main>
 
-  Total
-  / person
-
-  Reset
-  
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+  <!-- <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
     Coded by <a href="#">Your Name Here</a>.
-  </div>
+  </div> -->
 </body>
+
 </html>
