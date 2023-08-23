@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Tip Calculator App solution for Frontendmentor.io">
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <script defer src="index.js"></script>
   <link rel="stylesheet" href="style.css">
   <title>Frontend Mentor | Tip calculator app</title>
 
@@ -18,59 +19,70 @@
     </div>
     <div class="calculator bg-neutral-6">
       <div class="input">
-        <form action="#">
+        <div>
           <label class="fs-tertiary-body" for="billAmount">Bill</label>
-          <div class="flex-container bg-neutral-5">
+          <div class="bg-neutral-5 row-container text">
             <img class="icon" src="./images/icon-dollar.svg" alt="">
             <input type="text" id="billAmount" placeholder="0"
-              oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required />
+              oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" autocomplete="off"
+              required />
           </div>
-        </form>
+        </div>
 
-        <form action="#">
+        <div>
           <fieldset>
             <legend class="fs-tertiary-body">Select Tip %</legend>
-            <div class="tip-input-container ">
+            <div class="grid-container ">
               <input class="text-neutral-6 bg-neutral-1 btn" type="button" value="5%">
               <input class="text-neutral-6 bg-neutral-1 btn" type="button" value="10%">
               <input class="text-neutral-6 bg-neutral-1 btn" type="button" value="15%">
               <input class="text-neutral-6 bg-neutral-1 btn" type="button" value="25%">
               <input class="text-neutral-6 bg-neutral-1 btn" type="button" value="50%">
-              <input class="text-neutral-2 bg-neutral-5 btn" type="text" placeholder="Custom" size="6" maxlength="3">
+              <input class="text-neutral-2 bg-neutral-5 btn" type="text" placeholder="Custom" size="6" maxlength="3"
+                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                autocomplete="off">
             </div>
           </fieldset>
-        </form>
+        </div>
 
-        <form action="#" class="people-container">
-          <label class="fs-tertiary-body" for="numberOfPeople">Number of People</label>
-          <div class="flex-container">
+        <div>
+          <div class="row-container between">
+            <label class="fs-tertiary-body" for="numberOfPeople">Number of People</label>
+            <div>
+              <p class="fs-tertiary-body error">Can't be zero</p>
+            </div>
+          </div>
+          <div class="row-container text">
             <img class="icon" src="./images/icon-person.svg" alt="">
             <input type="text" id="numberOfPeople" placeholder="0"
-              oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required />
+              oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" autocomplete="off"
+              required />
           </div>
-        </form>
+        </div>
       </div>
 
-      <div class="output bg-neutral-1">
-        <div class="amount-container">
-          <div class="amount-text">
-            <p><span class="text-neutral-6 fs-tertiary-body">Tip Amount</span><br>/ person</p>
+      <div class="bg-neutral-1 output ">
+        <div class="row-container between gap">
+          <div class="column-container">
+            <p class="text-neutral-6 fs-tertiary-body">Tip Amount</p>
+            <p class="fs-quarternary-body">/ person</p>
           </div>
           <!-- tip-per-person-output -->
-          <div class="amount-per-person">
-            <h1 class="text-primary-1">$00.00</h1>
+          <div class="row-container between">
+            <h1 id="tip-per-person" class="text-primary-1">$00.00</h1>
           </div>
         </div>
-        <div class="amount-container">
-          <div class="amount-text">
-            <p><span class="text-neutral-6 fs-tertiary-body">Total</span><br>/ person</p>
+        <div class="row-container between gap">
+          <div class="column-container">
+            <p class="text-neutral-6 fs-tertiary-body">Total</p>
+            <p class="fs-quarternary-body">/ person</p>
           </div>
           <!-- total-tip-output -->
-          <div class="total-per-person">
-            <h1 class="text-primary-1">$00.00</h1>
+          <div class="row-container between">
+            <h1 id="total-per-person" class="text-primary-1">$00.00</h1>
           </div>
         </div>
-        <button class="text-neutral-1 bg-primary-1 fs-primary-body reset btn" type="reset">RESET</button>
+        <button id="reset" class="text-neutral-1 fs-primary-body reset btn" type="reset">RESET</button>
       </div>
     </div>
   </main>
