@@ -16,10 +16,10 @@
 	--ff-body: var(--ff-primary);
 
 	--fs-heading: var(--fs-xl);
-	--fs-primary-body: var(--fs-lg);
-	--fs-secondary-body: var(--fs-md);
-	--fs-tertiary-body: var(--fs-sm);
-	--fs-quarternary-body: var(--fs-xs);
+	--fs-body-1: var(--fs-lg);
+	--fs-body-2: var(--fs-md);
+	--fs-body-3: var(--fs-sm);
+	--fs-body-4: var(--fs-xs);
 
 	/* color variables */
 	--clr-primary-1: hsl(172, 67%, 45%);
@@ -150,17 +150,17 @@ h6 {
 .fs-heading {
 	font-size: var(--fs-heading);
 }
-.fs-primary-body {
-	font-size: var(--fs-primary-body);
+.fs-body-1 {
+	font-size: var(--fs-body-1);
 }
-.fs-secondary-body {
-	font-size: var(--fs-secondary-body);
+.fs-body-2 {
+	font-size: var(--fs-body-2);
 }
-.fs-tertiary-body {
-	font-size: var(--fs-tertiary-body);
+.fs-body-3 {
+	font-size: var(--fs-body-3);
 }
-.fs-quarternary-body {
-	font-size: var(--fs-quarternary-body);
+.fs-body-4 {
+	font-size: var(--fs-body-4);
 }
 
 /* General styling */
@@ -176,8 +176,10 @@ body {
 	display: grid;
 	place-content: center;
 	font-family: var(--ff-body);
-	font-size: var(--fs-primary-body);
+	font-size: var(--fs-body-1);
 	letter-spacing: 1px;
+	color: var(--clr-neutral-2);
+	background-color: var(--clr-neutral-4);
 }
 
 main {
@@ -191,29 +193,52 @@ main {
 .calculator {
 	display: flex;
 	flex-direction: row;
-	gap: 2.875rem;
+	justify-content: space-between;
 	margin-top: 5.375rem;
+	gap: 2.875rem;
 	padding: 2rem;
 	border-radius: 20px;
+	background-color: var(--clr-neutral-6);
 }
 
-.input {
-	flex-basis: 50%;
-	display: flex;
-	flex-direction: column;
-	gap: 2.5rem;
-	padding: 1rem;
-}
 .icon {
 	width: 15px;
 	height: 17px;
 }
+.input {
+	display: flex;
+	flex-direction: column;
+	padding: 1rem;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+input[type='number'] {
+	-moz-appearance: textfield;
+	appearance: textfield;
+}
+
+form {
+	display: flex;
+	flex-direction: column;
+}
+
 .btn {
 	min-width: 120px;
 	border: none;
 	outline: none;
 	border-radius: 5px;
 	padding: 0.5rem 1rem;
+	color: var(--clr-neutral-6);
+	background-color: var(--clr-neutral-1);
+}
+.btn:nth-child(6) {
+	color: var(--clr-neutral-1);
+	background-color: var(--clr-neutral-5);
 }
 .btn:hover {
 	color: var(--clr-neutral-1);
@@ -221,10 +246,32 @@ main {
 	cursor: pointer;
 	opacity: 1;
 }
-.btn:focus {
+.btn:active {
 	color: var(--clr-neutral-1);
 	background-color: var(--clr-primary-1);
 	opacity: 1;
+}
+.btn:focus {
+	outline: 2px solid var(--clr-primary-1);
+}
+
+.btn-reset {
+	margin-top: auto;
+	background-color: hsl(172, 67%, 45%);
+	opacity: 0.2;
+}
+.btn-reset:focus {
+	outline: 2px solid var(--clr-neutral-6);
+	opacity: 1;
+}
+
+.active {
+	color: var(--clr-neutral-1);
+	background-color: var(--clr-primary-1);
+}
+
+.hidden {
+	display: none;
 }
 
 .row-container {
@@ -239,7 +286,7 @@ main {
 	color: var(--clr-neutral-1);
 	background-color: var(--clr-neutral-5);
 }
-.row-container input:focus {
+.row-container input:active {
 	color: var(--clr-neutral-1);
 }
 .row-container:focus-within {
@@ -256,8 +303,14 @@ main {
 .between {
 	justify-content: space-between;
 }
-.gap {
+.gap-1 {
 	gap: 6rem;
+}
+.mt-1 {
+	margin-top: 0.25rem;
+}
+.mb-1 {
+	margin-bottom: 2.875rem;
 }
 
 fieldset {
@@ -280,20 +333,10 @@ fieldset {
 }
 
 .output {
-	flex-basis: 50%;
 	display: flex;
 	flex-direction: column;
 	padding: 2rem;
 	border-radius: 20px;
 	gap: 2.875rem;
-}
-
-.reset {
-	margin-top: auto;
-	background-color: hsl(172, 67%, 45%);
-	opacity: 0.2;
-}
-
-.hidden {
-	display: none;
+	background-color: var(--clr-neutral-1);
 }
