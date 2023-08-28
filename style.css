@@ -184,6 +184,7 @@ body {
 
 main {
 	width: 64vw;
+	min-width: 1000px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -191,9 +192,9 @@ main {
 }
 
 .calculator {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 1fr;
 	margin-top: 5.375rem;
 	gap: 2.875rem;
 	padding: 2rem;
@@ -261,17 +262,9 @@ form {
 	opacity: 0.2;
 }
 .btn-reset:focus {
+	color: var(--clr-neutral-1);
 	outline: 2px solid var(--clr-neutral-6);
 	opacity: 1;
-}
-
-.active {
-	color: var(--clr-neutral-1);
-	background-color: var(--clr-primary-1);
-}
-
-.hidden {
-	display: none;
 }
 
 .row-container {
@@ -302,9 +295,6 @@ form {
 }
 .between {
 	justify-content: space-between;
-}
-.gap-1 {
-	gap: 6rem;
 }
 .mt-1 {
 	margin-top: 0.25rem;
@@ -339,4 +329,49 @@ fieldset {
 	border-radius: 20px;
 	gap: 2.875rem;
 	background-color: var(--clr-neutral-1);
+}
+
+/* error style */
+.active {
+	color: var(--clr-neutral-1);
+	background-color: var(--clr-primary-1);
+}
+
+.error {
+	border: 1px solid hsl(0, 100%, 70%) !important;
+	outline: 1px solid hsl(0, 100%, 70%) !important;
+}
+.error-message {
+	color: hsl(0, 100%, 70%);
+}
+
+.hidden {
+	display: none;
+}
+
+@media screen and (max-width: 40rem) {
+	main {
+		width: 75vw;
+		min-width: 0;
+		margin: 1.5em;
+		margin-bottom: 0;
+	}
+	.calculator {
+		grid-template-columns: 1fr;
+		grid-template-rows: 1fr 0.25fr;
+	}
+	.grid-container {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-template-rows: repeat(3, 1fr);
+		padding-top: 1rem;
+	}
+}
+
+@media screen and (max-width: 60rem) {
+	main {
+		width: 90vw;
+		min-width: 0;
+		margin: 1.5em;
+	}
 }
