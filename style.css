@@ -192,6 +192,11 @@ main {
 	justify-content: center;
 }
 
+.logo {
+	width: 87px;
+	height: 54px;
+}
+
 .calculator {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
