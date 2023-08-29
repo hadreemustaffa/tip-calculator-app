@@ -180,6 +180,7 @@ body {
 	letter-spacing: 1px;
 	color: var(--clr-neutral-2);
 	background-color: var(--clr-neutral-4);
+	overflow-x: hidden;
 }
 
 main {
@@ -349,14 +350,19 @@ fieldset {
 	display: none;
 }
 
-@media screen and (max-width: 40rem) {
+@media screen and (max-width: 599px) {
+	:root {
+		--fs-xl: 1.75rem;
+	}
+
 	main {
-		width: 75vw;
+		width: 100vw;
 		min-width: 0;
-		margin: 1.5em;
+		margin-top: 2rem;
 		margin-bottom: 0;
 	}
 	.calculator {
+		margin-top: 2rem;
 		grid-template-columns: 1fr;
 		grid-template-rows: 1fr 0.25fr;
 	}
@@ -368,10 +374,21 @@ fieldset {
 	}
 }
 
-@media screen and (max-width: 60rem) {
+@media screen and (min-width: 600px) and (max-width: 1000px) {
 	main {
-		width: 90vw;
+		width: 100vw;
 		min-width: 0;
 		margin: 1.5em;
+	}
+	.calculator {
+		margin-top: 2rem;
+		grid-template-columns: 1fr;
+		grid-template-rows: 1fr 0.25fr;
+	}
+	.grid-container {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		grid-template-rows: repeat(2, 1fr);
+		padding-top: 1rem;
 	}
 }
