@@ -1,4 +1,4 @@
-const formElement = document.querySelector('#form');
+const formElements = document.querySelector('#form');
 const billContainer = document.querySelector('.bill-container');
 const peopleContainer = document.querySelector('.people-container');
 const tipButtons = document.querySelectorAll('.tip');
@@ -10,21 +10,11 @@ const inputPeople = document.getElementById('numberOfPeople');
 const outputTip = document.getElementById('tipPerPerson');
 const outputTotal = document.getElementById('totalPerPerson');
 
-const initialState = () => {
-	let bill = 0;
-	let people = 0;
-	let tip = 0;
-	let customTip = 0;
-
-	return bill, people, tip;
-};
-
 function calculator() {
 	for (let i = 0; i < tipButtons.length; i++) {
-		formElement.addEventListener('input', () => {
+		document.addEventListener('input', () => {
 			let bill = Number(inputBill.value);
 			let people = Number(inputPeople.value);
-
 			const calculateTip = () => {
 				let selectedTip = document.querySelector('.active');
 				let tip = parseFloat(selectedTip.value) / 100;
@@ -61,13 +51,16 @@ function calculator() {
 				}
 			};
 
-			tipButtons[i].addEventListener('click', () => {
-				calculateTip();
+			tipButtons[i].addEventListener('input', () => {
+				validateInput();
 			});
-			tipButtons[i].addEventListener('keypress', (e) => {
-				if (e.key === 'Enter') {
-					calculateTip();
+			tipButtons[i].addEventListener('click', () => {
+				if (i !== tipButtons.length - 1) {
+					validateInput();
 				}
+			});
+			tipButtons[i].addEventListener('keypress', () => {
+				validateInput();
 			});
 
 			inputNumbers.forEach((input) => {
@@ -80,40 +73,42 @@ function calculator() {
 					}
 				});
 			});
-		});
-	}
 
-	const resetBtn = () => {
-		const resetBtn = document.getElementById('reset');
-		resetBtn.addEventListener('click', () => {
-			initialState();
-			billContainer.classList.remove('error');
-			peopleContainer.classList.remove('error');
-			errorMessage.forEach((message) => {
-				message.classList.add('hidden');
-			});
-			tipButtons.forEach(() => {
-				document.querySelector('.active')?.classList.remove('active');
-			});
-			outputTip.innerHTML = '$00.00';
-			outputTotal.innerHTML = '$00.00';
-		});
-	};
+			const resetBtn = () => {
+				const resetBtn = document.getElementById('reset');
+				resetBtn.addEventListener('click', () => {
+					bill = 0;
+					people = 0;
+					formElements.reset();
+					billContainer.classList.remove('error');
+					peopleContainer.classList.remove('error');
+					errorMessage.forEach((message) => {
+						message.classList.add('hidden');
+					});
+					tipButtons.forEach(() => {
+						document.querySelector('.active')?.classList.remove('active');
+					});
+					outputTip.innerHTML = '$00.00';
+					outputTotal.innerHTML = '$00.00';
+				});
+			};
 
-	tipButtons.forEach((button) => {
-		button.addEventListener('click', () => {
-			document.querySelector('.active')?.classList.remove('active');
-			button.classList.add('active');
+			resetBtn();
 		});
-		button.addEventListener('keypress', (e) => {
-			if (e.key === 'Enter') {
+
+		tipButtons.forEach((button) => {
+			button.addEventListener('click', () => {
 				document.querySelector('.active')?.classList.remove('active');
 				button.classList.add('active');
-			}
+			});
+			button.addEventListener('keypress', (e) => {
+				if (e.key === 'Enter') {
+					document.querySelector('.active')?.classList.remove('active');
+					button.classList.add('active');
+				}
+			});
 		});
-	});
-
-	resetBtn();
+	}
 }
 
 calculator();
